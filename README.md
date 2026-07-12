@@ -1,4 +1,4 @@
-# WearCart - E-commerce System
+# WearCart-Web3 - Apparel E-commerce & Business Management System
 
 # Demo Vieo -[ https://drive.google.com/file/d/1yJEAtTKBnmyVRXpFhiGwgB0vkTPHETPf/view?usp=drive_link](https://drive.google.com/file/d/1NZvMiRhoOE7sJ5BwIPprgbdPwUftHSQN/view?usp=drive_link)
 

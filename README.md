@@ -1,100 +1,232 @@
-# WearCart-Web3 - Apparel E-commerce & Business Management System
+# WearCart - Hybrid Web2 & Web3 Apparel E-commerce & Business Management System
 
-# Demo Vieo -[ https://drive.google.com/file/d/1yJEAtTKBnmyVRXpFhiGwgB0vkTPHETPf/view?usp=drive_link](https://drive.google.com/file/d/1NZvMiRhoOE7sJ5BwIPprgbdPwUftHSQN/view?usp=drive_link)
+**WearCart** is a modern full-stack hybrid apparel e-commerce and enterprise business management platform. It offers a traditional retail experience combined with decentralized Web3 payments and smart contracts. Customers can browse clothing items, apply coupons, and checkout using either traditional cards/UPI (via Razorpay) or cryptocurrency (ETH on Ethereum/Sepolia) directly via connected Web3 wallets. Administrators are equipped with comprehensive tools for managing inventory, orders, invoices, payments, and vendor purchases.
 
-A comprehensive web-based clothing e-commerce system built with Next.js, PostgreSQL, and Express.
+---
 
-## Project Overview
+## 👥 Development Team
+This is a collaborative team project designed and built by:
+*   **Prince Jha**
+*   **Sachin Jha**
 
-WearCart is a cutting-edge **Hybrid E-commerce Platform** that bridges the gap between Web2 and Web3. It offers a traditional shopping experience with advanced features like crypto payments and smart contract integration.
+---
 
-## Features
+## 🎥 Demo Videos
+*   **Web3 & Hybrid Version (This Repository)**: [Google Drive Link](https://drive.google.com/file/d/1NZvMiRhoOE7sJ5BwIPprgbdPwUftHSQN/view?usp=drive_link)
+*   **Traditional Web2 Version**: [Google Drive Link](https://drive.google.com/file/d/1-MVuq8ZhpDC80TfP3JyuczfGQuAT1r13/view?usp=sharing)
 
-### 🛍️ Customer Experience
-- **Hybrid Payments**: Pay with Credit Card (Razorpay) OR Crypto (ETH/Sepolia).
-- **Web3 Integration**: Connect Wallet (Metamask/Rainbow) to view balance and make blockchain purchases.
-- **Smart Filters**: Browse products by category, type, and price.
-- **Order Tracking**: View status of both traditional and blockchain transactions.
+---
 
-### 🔐 Admin Dashboard
-- **Product Management**: Create, edit, and inventory control.
-- **Sales Overview**: Track revenue from all sources.
-- **Invoicing**: Automatic invoice generation for orders.
+## ⚡ Key Highlights & Advancements
 
-## Tech Stack
+*   **Hybrid Payment Gateway**: Supports both traditional electronic payments (Credit/Debit Cards, UPI, NetBanking via **Razorpay**) and decentralized blockchain payments (**ETH** via a Solidity smart contract).
+*   **Web3 Wallet Integration**: Out-of-the-box wallet connectivity supporting MetaMask, Rainbow, and other wallets using **RainbowKit** and **Wagmi** on the frontend.
+*   **Decentralized Smart Contracts**: A custom-built Solidity smart contract (`ApparelMarketplace.sol`) deployed on the Ethereum Sepolia network handles on-chain product listings, decentralized stock queries, item purchases, and secure contract fund withdrawals.
+*   **Enterprise Administration**: Fully integrated back-office system for tracking sale orders, vendor purchase orders, generating customer invoices, logging vendor bills, tracking incoming payments, and generating sales/purchase reports.
+*   **Automatic Stock Control**: Inventory quantities automatically sync in real-time, reducing stock upon sale order confirmations (both Web2 and Web3) and increasing stock when vendor purchase orders are confirmed.
+*   **Automated Invoicing Engine**: Configurable system setting to automatically generate and issue customer invoices immediately after checkout payments are verified.
 
-- **Frontend**: Next.js 14, React, Tailwind CSS, RainBowKit (Web3)
-- **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL (via Supabase)
-- **Smart Contract**: Solidity (Ethereum/Sepolia)
-- **Deployment**: Not currently hosted. Please see [SETUP.md](./SETUP.md) for local setup instructions.
+---
 
-## Project Structure
+## 🛠️ Tech Stack
+
+### Frontend (Customer Portal)
+*   **Framework**: Next.js 14 (App Router)
+*   **Library**: React, TypeScript
+*   **Styling**: Tailwind CSS
+*   **Web3 Integration**: RainbowKit, Wagmi, Viem, TanStack React Query
+*   **State Management**: Zustand
+
+### Backend (Admin API)
+*   **Server**: Node.js, Express.js
+*   **Database**: PostgreSQL
+*   **ORM**: Sequelize ORM
+*   **Authentication**: JWT (JSON Web Tokens) with role-based access controls
+*   **Payment APIs**: Razorpay Node SDK
+
+### Smart Contracts (Blockchain Layer)
+*   **Language**: Solidity (v0.8.19)
+*   **Networks**: Sepolia Testnet, Ethereum Mainnet
+
+---
+
+## 📂 Project Structure
 
 ```
-WearCart/
-├── backend/          # Express API + Database Logic
-│   ├── config/       # DB Connection (Supabase/Local)
-│   ├── models/       # Sequelize Models
-│   └── routes/       # API Endpoints
-├── frontend/         # Next.js App
-│   ├── app/          # Pages & Routes
-│   ├── components/   # UI Components
-│   └── utils/        # Web3 & Helper functions
-└── smart_contract/   # Solidity Contracts (if applicable)
+WearCart-Web2&Web3/
+├── backend/                  # Express.js Rest API & DB Services
+│   ├── api/                  # Server entry point (server.js)
+│   ├── config/               # Database connection configurations (PostgreSQL/Supabase)
+│   ├── controllers/          # Business logic controllers (auth, products, sales, payments, coupons)
+│   ├── middleware/           # Authentication & role authorization middleware
+│   ├── models/               # Sequelize PostgreSQL models
+│   ├── routes/               # Express routing endpoints
+│   ├── seeds/                # Initial database seed scripts
+│   └── scripts/              # Migration utilities
+├── frontend/                 # Next.js 14 Web Application
+│   ├── app/                  # Web App pages & routing (cart, checkout, admin, orders)
+│   ├── components/           # Reusable UI elements (Header, ProductCard, Web3Provider)
+│   ├── store/                # Zustand client-side global stores
+│   └── utils/                # Web3 configurations, smart contract address, & ABI (web3.ts)
+└── web3/                     # Smart Contract project directory
+    └── contracts/            # Solidity smart contracts (ApparelMarketplace.sol)
 ```
 
-## Quick Start
+---
 
-**NOTE:** This project is currently **not hosted**. You must set it up locally on your machine to test and evaluate it.
+## ⚙️ Setup & Installation
 
-Please verify that you have the **Prerequisites** installed and then follow the **[SETUP.md](./SETUP.md)** guide strictly to get the project running.
+Follow these steps sequentially to set up and run the hybrid system locally.
 
-### Prerequisites
-- Node.js 18+
-- Supabase Account
-- WalletConnect Project ID
+### 1. Prerequisites
+Ensure you have the following installed on your machine:
+*   [Node.js (v18+)](https://nodejs.org/)
+*   [PostgreSQL (v12+)](https://www.postgresql.org/) OR a [Supabase](https://supabase.com/) Account
+*   [Git](https://git-scm.com/)
+*   [WalletConnect Project ID](https://cloud.walletconnect.com/) (Required for RainbowKit connection on the frontend)
 
-### Products
-- `GET /api/products` - Get all products (with filters)
-- `GET /api/products/:id` - Get single product
-- `POST /api/products` - Create product (internal only)
-- `PUT /api/products/:id` - Update product (internal only)
-- `DELETE /api/products/:id` - Delete product (internal only)
+---
 
-### Sale Orders
-- `POST /api/sale-orders` - Create sale order
-- `GET /api/sale-orders` - Get all sale orders
-- `GET /api/sale-orders/:id` - Get single sale order
-- `POST /api/sale-orders/:id/invoice` - Create invoice from order
+### 2. Backend Setup
 
-### Coupons
-- `POST /api/coupons/validate` - Validate coupon code
-- `GET /api/coupons` - Get all coupons (internal only)
+1.  Navigate into the `backend` directory:
+    ```bash
+    cd backend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Create a `.env` file in the root of the `backend` directory:
+    ```env
+    PORT=5000
+    NODE_ENV=development
+    JWT_SECRET=your_jwt_secret_key
+    FRONTEND_URL=http://localhost:3000
 
-## Features Implementation
+    # PostgreSQL Database Credentials
+    DB_HOST=localhost                # Or your Supabase Host
+    DB_PORT=5432                     # Or your Supabase transaction port (e.g. 6543)
+    DB_USER=postgres                 # Or your Supabase User
+    DB_PASSWORD=your_password        # Or your Supabase Database Password
+    DB_NAME=wearcart                 # Or your Supabase Database Name
+    DB_SSL=false                     # Set to true if using Supabase or host requiring SSL
+    ```
+4.  Create the database in PostgreSQL:
+    ```sql
+    CREATE DATABASE wearcart;
+    ```
+5.  Seed the database (Creates tables and populates sample data):
+    ```bash
+    npm run seed
+    ```
+6.  Start the Express backend server:
+    ```bash
+    npm run dev
+    ```
+    The server will boot up at `http://localhost:5000`.
 
-### Automatic Stock Management
-- Stock is automatically updated when purchase orders are confirmed
-- Stock is automatically reduced when sale orders are confirmed
+---
 
-### Automatic Invoicing
-- System setting controls automatic invoice generation
-- When enabled, invoices are automatically created after website payment
-- When disabled, invoices must be manually created in backend
+### 3. Frontend Setup
 
-### Payment Terms
-- Support for early payment discounts
-- Configurable discount percentage and days
-- Discount can be applied on base amount or total amount
+1.  Navigate into the `frontend` directory:
+    ```bash
+    cd frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Create a `.env.local` file in the root of the `frontend` directory:
+    ```env
+    NEXT_PUBLIC_API_URL=http://localhost:5000/api
+    NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your_walletconnect_project_id
+    ```
+4.  Start the Next.js development server:
+    ```bash
+    npm run dev
+    ```
+    The application will run locally at `http://localhost:3000`.
 
-### Coupon Codes
-- Contact-based restrictions
-- Expiration date validation
-- Linked to discount offers with date ranges
-- Available on sales or website
+---
 
-## License
+### 4. Smart Contract Integration
 
-ISC
+The smart contract is written in Solidity and compiled for deployment.
+*   **Contract Code**: [ApparelMarketplace.sol](./web3/contracts/ApparelMarketplace.sol)
+*   **Deployment**: The contract should be compiled and deployed on an EVM-compatible chain (e.g., Sepolia Testnet). Once deployed, replace the `CONTRACT_ADDRESS` variable in [web3.ts](./frontend/utils/web3.ts):
+    ```typescript
+    export const CONTRACT_ADDRESS = 'YOUR_DEPLOYED_CONTRACT_ADDRESS';
+    ```
 
+---
+
+## 🗄️ Database Models
+
+*   **Users**: Stores user profiles for portal shoppers and internal admin users (distinguished by roles).
+*   **Contacts**: Represents customers and vendors including addresses and configuration.
+*   **Products**: Contains catalog item descriptions, categories, pricing, tax information, and current inventory stock level.
+*   **Payment Terms**: Defines conditions of payments (e.g., immediate payment, or 15/30-day terms with early-payment discounts).
+*   **Discount Offers**: Defines global discount promotions, percentage cuts, and applicable date ranges.
+*   **Coupon Codes**: Unique voucher strings linked to discount offers, featuring validation controls (restricted by contact or usage limits).
+*   **Sale Orders**: Client purchase receipts, recording totals, items, payment method (`crypto`/`razorpay`), and transaction verification hash (`txHash`).
+*   **Purchase Orders**: Procurement documents issued to suppliers for inventory restock.
+*   **Customer Invoices**: Sales invoices generated from sale orders for finance tracking.
+*   **Vendor Bills**: Logged supplier invoices derived from purchase orders.
+*   **Payments**: System transaction log capturing payment date, amount, payment method (cash, card, bank transfer, online, crypto), and verification reference ID.
+
+---
+
+## 🔌 API Endpoints
+
+### 🔐 Authentication
+*   `POST /api/auth/register` - Register a new customer user profile
+*   `POST /api/auth/login` - Authenticate users and retrieve JWT tokens
+*   `GET /api/auth/me` - Retrieve authenticated user profile payload
+
+### 🏷️ Products Catalog
+*   `GET /api/products` - Retrieve products list (supports category, type, and search queries)
+*   `GET /api/products/:id` - Fetch details for a specific product
+*   `POST /api/products` - Add a new apparel product (Internal Admin only)
+*   `PUT /api/products/:id` - Update existing product info/stock (Internal Admin only)
+*   `DELETE /api/products/:id` - Remove product from catalog (Internal Admin only)
+
+### 📦 Sales Orders & Invoicing
+*   `POST /api/sale-orders` - Create a new sale order (stores `txHash` and payment details)
+*   `GET /api/sale-orders` - Retrieve list of all orders
+*   `GET /api/sale-orders/:id` - Fetch single order details with items
+*   `POST /api/sale-orders/:id/invoice` - Manually create an invoice from a sale order (Internal Admin only)
+
+### 💳 Payment Gateways
+*   `POST /api/payments/create-order` - Create a Razorpay transaction order
+*   `POST /api/payments/verify` - Verify Razorpay payment signature hashes
+
+### 🎟️ Coupon Management
+*   `POST /api/coupons/validate` - Validate coupon strings before checkout applies
+*   `GET /api/coupons` - Retrieve list of all system coupons (Internal Admin only)
+
+---
+
+## 📝 Features & Policy Implementations
+
+### Automatic Stock Synchronization
+*   **Deduction**: On checkout completion (sale order confirmed), the SQL database updates product quantities.
+*   **Replenishment**: On confirming vendor purchase orders, inventory counts increase.
+
+### Configurable Automated Invoicing
+*   An `automatic_invoicing` system setting toggles generation modes.
+*   When **enabled**: The server spawns customer invoices instantly upon payment verification.
+*   When **disabled**: Administrative users must click "Create Invoice" on individual sales files.
+
+### Payment Terms & Early Payment Discounts
+*   Define custom early-payment incentives (e.g., 2% off if paid within 10 days).
+*   System calculates dynamic discounts on base values or invoice totals.
+
+### Expiry-Validated Coupon Codes
+*   Checks expiration status, usage frequency, and profile-based contact restrictions before certifying checkouts.
+
+---
+
+## ⚖️ License
+This project is licensed under the **ISC License**.

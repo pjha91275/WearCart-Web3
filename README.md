@@ -52,7 +52,7 @@ This is a collaborative team project designed and built by:
 ## 📂 Project Structure
 
 ```
-WearCart-Web2&Web3/
+WearCart-Web3/
 ├── backend/                  # Express.js Rest API & DB Services
 │   ├── api/                  # Server entry point (server.js)
 │   ├── config/               # Database connection configurations (PostgreSQL/Supabase)

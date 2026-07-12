@@ -11,9 +11,8 @@ This is a collaborative team project designed and built by:
 
 ---
 
-## 🎥 Demo Videos
+## 🎥 Demo Video
 *   **Web3 & Hybrid Version (This Repository)**: [Google Drive Link](https://drive.google.com/file/d/1NZvMiRhoOE7sJ5BwIPprgbdPwUftHSQN/view?usp=drive_link)
-*   **Traditional Web2 Version**: [Google Drive Link](https://drive.google.com/file/d/1-MVuq8ZhpDC80TfP3JyuczfGQuAT1r13/view?usp=sharing)
 
 ---
 
